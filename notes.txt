@@ -1,84 +1,80 @@
-------
  > [notification-service build 4/4] RUN mvn -B -ntp -pl "notification-service" -am package -DskipTests     && cp "notification-service"/target/*.jar /workspace/app.jar:
-3.174 [INFO] Scanning for projects...
-10.06 [WARNING]
-10.06 [WARNING] Some problems were encountered while building the effective model for com.programming.techie:order-service:jar:1.0-SNAPSHOT
-10.06 [WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.testcontainers:junit-jupiter:jar -> duplicate declaration of version (?) @ line 112, column 21
-10.06 [WARNING]
-10.06 [WARNING] Some problems were encountered while building the effective model for com.programming.techie:notification-service:jar:1.0-SNAPSHOT
-10.06 [WARNING] 'build.plugins.plugin.version' for org.apache.avro:avro-maven-plugin is missing. @ line 85, column 21
-10.06 [WARNING]
-10.06 [WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
-10.06 [WARNING]
-10.06 [WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
-10.06 [WARNING]
-10.07 [INFO] ------------------------------------------------------------------------
-10.07 [INFO] Reactor Build Order:
-10.07 [INFO]
-10.08 [INFO] spring-boot-3-microservices                                        [pom]
-10.08 [INFO] notification-service                                               [jar]
-10.09 [INFO]
-10.09 [INFO] ---------< com.programming.techie:spring-boot-3-microservices >---------
-10.09 [INFO] Building spring-boot-3-microservices 1.0-SNAPSHOT                  [1/2]
-10.09 [INFO]   from pom.xml
-10.09 [INFO] --------------------------------[ pom ]---------------------------------
-10.36 [INFO]
-10.36 [INFO] --- spring-boot:3.2.4:repackage (repackage) @ spring-boot-3-microservices ---
-35.39 [INFO]
-35.39 [INFO] ------------< com.programming.techie:notification-service >-------------
-35.39 [INFO] Building notification-service 1.0-SNAPSHOT                         [2/2]
-35.39 [INFO]   from notification-service/pom.xml
-35.39 [INFO] --------------------------------[ jar ]---------------------------------
-472.0 [INFO]
-472.0 [INFO] --- avro:1.12.2:schema (schemas) @ notification-service ---
-478.5 [INFO]
-478.5 [INFO] --- resources:3.3.1:resources (default-resources) @ notification-service ---
-479.8 [INFO] Copying 1 resource from src/main/resources to target/classes
-479.8 [INFO] Copying 1 resource from src/main/resources to target/classes
-479.8 [INFO]
-479.8 [INFO] --- compiler:3.11.0:compile (default-compile) @ notification-service ---
-482.5 [INFO] Changes detected - recompiling the module! :input tree
-482.5 [INFO] Compiling 3 source files with javac [debug release 21] to target/classes
-483.5 [INFO] Annotation processing is enabled because one or more processors were found
-483.5   on the class path. A future release of javac may disable annotation processing
-483.5   unless at least one processor is specified by name (-processor), or a search
-483.5   path is specified (--processor-path, --processor-module-path), or annotation
-483.5   processing is enabled explicitly (-proc:only, -proc:full).
-483.5   Use -Xlint:-options to suppress this message.
-483.5   Use -proc:none to disable annotation processing.
-483.5 [INFO] -------------------------------------------------------------
-483.5 [ERROR] COMPILATION ERROR :
-483.5 [INFO] -------------------------------------------------------------
-483.5 [ERROR] /workspace/notification-service/target/generated/avro/com/techie/microservices/order/event/OrderPlacedEvent.java:[8,23] cannot find symbol
-483.5   symbol:   class JsonSchemaParser
-483.5   location: package org.apache.avro
-483.5 [INFO] 1 error
-483.5 [INFO] -------------------------------------------------------------
-483.5 [INFO] ------------------------------------------------------------------------
-483.5 [INFO] Reactor Summary for spring-boot-3-microservices 1.0-SNAPSHOT:
-483.5 [INFO]
-483.5 [INFO] spring-boot-3-microservices ........................ SUCCESS [ 25.298 s]
-483.5 [INFO] notification-service ............................... FAILURE [07:28 min]
-483.5 [INFO] ------------------------------------------------------------------------
-483.5 [INFO] BUILD FAILURE
-483.5 [INFO] ------------------------------------------------------------------------
-483.5 [INFO] Total time:  08:00 min
-483.5 [INFO] Finished at: 2026-11-19T18:30:45Z
-483.5 [INFO] ------------------------------------------------------------------------
-483.5 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project notification-service: Compilation failure
-483.5 [ERROR] /workspace/notification-service/target/generated/avro/com/techie/microservices/order/event/OrderPlacedEvent.java:[8,23] cannot find symbol
-483.5 [ERROR]   symbol:   class JsonSchemaParser
-483.5 [ERROR]   location: package org.apache.avro
-483.5 [ERROR] -> [Help 1]
-483.5 [ERROR]
-483.5 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-483.5 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
-483.5 [ERROR]
-483.5 [ERROR] For more information about the errors and possible solutions, please read the following articles:
-483.5 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
-483.5 [ERROR]
-483.5 [ERROR] After correcting the problems, you can resume the build with the command
-483.5 [ERROR]   mvn <args> -rf :notification-service
+39.26 [INFO] Scanning for projects...
+87.59 [WARNING]
+87.59 [WARNING] Some problems were encountered while building the effective model for com.programming.techie:order-service:jar:1.0-SNAPSHOT
+87.60 [WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.testcontainers:junit-jupiter:jar -> duplicate declaration of version (?) @ line 112, column 21
+87.60 [WARNING]
+87.60 [WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+87.61 [WARNING]
+87.61 [WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+87.63 [WARNING]
+88.02 [INFO] ------------------------------------------------------------------------
+88.02 [INFO] Reactor Build Order:
+88.02 [INFO]
+88.08 [INFO] spring-boot-3-microservices                                        [pom]
+88.09 [INFO] notification-service                                               [jar]
+88.65 [INFO]
+88.68 [INFO] ---------< com.programming.techie:spring-boot-3-microservices >---------
+88.71 [INFO] Building spring-boot-3-microservices 1.0-SNAPSHOT                  [1/2]
+88.73 [INFO]   from pom.xml
+88.75 [INFO] --------------------------------[ pom ]---------------------------------
+90.71 [INFO]
+90.72 [INFO] --- spring-boot:3.2.4:repackage (repackage) @ spring-boot-3-microservices ---
+162.0 [INFO]
+162.0 [INFO] ------------< com.programming.techie:notification-service >-------------
+162.0 [INFO] Building notification-service 1.0-SNAPSHOT                         [2/2]
+162.0 [INFO]   from notification-service/pom.xml
+162.0 [INFO] --------------------------------[ jar ]---------------------------------
+734.5 [INFO]
+734.5 [INFO] --- avro:1.11.3:schema (schemas) @ notification-service ---
+745.0 [INFO]
+745.0 [INFO] --- resources:3.3.1:resources (default-resources) @ notification-service ---
+747.9 [INFO] Copying 1 resource from src/main/resources to target/classes
+748.3 [INFO] Copying 1 resource from src/main/resources to target/classes
+748.3 [INFO]
+748.3 [INFO] --- compiler:3.11.0:compile (default-compile) @ notification-service ---
+754.2 [INFO] Changes detected - recompiling the module! :input tree
+754.3 [INFO] Compiling 3 source files with javac [debug release 21] to target/classes
+769.2 [INFO] Annotation processing is enabled because one or more processors were found
+769.2   on the class path. A future release of javac may disable annotation processing
+769.2   unless at least one processor is specified by name (-processor), or a search
+769.2   path is specified (--processor-path, --processor-module-path), or annotation
+769.2   processing is enabled explicitly (-proc:only, -proc:full).
+769.2   Use -Xlint:-options to suppress this message.
+769.2   Use -proc:none to disable annotation processing.
+769.2 [INFO] -------------------------------------------------------------
+769.2 [ERROR] COMPILATION ERROR :
+769.2 [INFO] -------------------------------------------------------------
+769.2 [ERROR] /workspace/notification-service/target/generated/avro/com/techie/microservices/order/event/OrderPlacedEvent.java:[8,23] cannot find symbol
+769.2   symbol:   class JsonSchemaParser
+769.2   location: package org.apache.avro
+769.2 [INFO] 1 error
+769.2 [INFO] -------------------------------------------------------------
+769.3 [INFO] ------------------------------------------------------------------------
+769.3 [INFO] Reactor Summary for spring-boot-3-microservices 1.0-SNAPSHOT:
+769.3 [INFO]
+769.3 [INFO] spring-boot-3-microservices ........................ SUCCESS [01:13 min]
+769.3 [INFO] notification-service ............................... FAILURE [10:07 min]
+769.3 [INFO] ------------------------------------------------------------------------
+769.3 [INFO] BUILD FAILURE
+769.3 [INFO] ------------------------------------------------------------------------
+769.3 [INFO] Total time:  12:10 min
+769.3 [INFO] Finished at: 2026-11-19T19:01:09Z
+769.3 [INFO] ------------------------------------------------------------------------
+769.3 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project notification-service: Compilation failure
+769.3 [ERROR] /workspace/notification-service/target/generated/avro/com/techie/microservices/order/event/OrderPlacedEvent.java:[8,23] cannot find symbol
+769.3 [ERROR]   symbol:   class JsonSchemaParser
+769.4 [ERROR]   location: package org.apache.avro
+769.4 [ERROR] -> [Help 1]
+769.4 [ERROR]
+769.4 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+769.4 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
+769.4 [ERROR]
+769.4 [ERROR] For more information about the errors and possible solutions, please read the following articles:
+769.4 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+769.4 [ERROR]
+769.4 [ERROR] After correcting the problems, you can resume the build with the command
+769.4 [ERROR]   mvn <args> -rf :notification-service
 ------
 Dockerfile:6
 
