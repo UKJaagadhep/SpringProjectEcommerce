@@ -1,11 +1,17 @@
-$token = (Invoke-RestMethod -Method Post `
-  -Uri "http://localhost:8181/realms/spring-microservices-security-realm/protocol/openid-connect/token" `
-  -Body @{
-    grant_type = "client_credentials"
-    client_id = "spring-cloud-client-id"
-    client_secret = $secret
-  }).access_token
-
-Invoke-RestMethod `
-  -Uri "http://localhost:9000/api/inventory?skuCode=iphone_15&quantity=10" `
-  -Headers @{ Authorization = "Bearer $token" }
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $token = (Invoke-RestMethod -Method Post `
+>>   -Uri "http://localhost:8181/realms/spring-microservices-security-realm/protocol/openid-connect/token" `
+>>   -Body @{
+>>     grant_type = "client_credentials"
+>>     client_id = "spring-cloud-client-id"
+>>     client_secret = $secret
+>>   }).access_token
+>>
+>> Invoke-RestMethod `
+>>   -Uri "http://localhost:9000/api/inventory?skuCode=iphone_15&quantity=10" `
+>>   -Headers @{ Authorization = "Bearer $token" }
+Invoke-RestMethod : The underlying connection was closed: An unexpected error occurred on a receive.
+At line:9 char:1
++ Invoke-RestMethod `
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebException
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
