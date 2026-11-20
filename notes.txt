@@ -1,114 +1,51 @@
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $secret = Read-Host "Keycloak client secret"
-Keycloak client secret: **********
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $token = (Invoke-RestMethod -Method Post -Uri "http://localhost:8181/realms/spring-microservices-security-realm/protocol/openid-connect/token" -Body @{ grant_type = "client_credentials"; client_id = "spring-cloud-client-id"; client_secret = $secret }}.access_token
-At line:1 char:251
-+ ... ient_id = "spring-cloud-client-id"; client_secret = $secret }}.access ...
-+                                                                  ~
-Missing closing ')' in expression.
-At line:1 char:251
-+ ... ent_id = "spring-cloud-client-id"; client_secret = $secret }}.access_ ...
-+                                                                 ~
-Unexpected token '}' in expression or statement.
-    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
-    + FullyQualifiedErrorId : MissingEndParenthesisInExpression
-
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $token = (Invoke-RestMethod -Method Post `
->>     -Uri "http://localhost:8181/realms/spring-microservices-security-realm/protocol/openid-connect/token" `
->>     -Body @{
->>         grant_type = "client_credentials"
->>         client_id = "spring-cloud-client-id"
->>         client_secret = $secret
->>     }).access_token
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> Invoke-RestMethod -Uri "http://localhost:9000/api/inventory?skuCode=iphone_15&quantity=10" -Headers @{ Authorization = "Bearer $token" }
-Invoke-RestMethod : The underlying connection was closed: An unexpected error occurred on a receive.
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $token
+eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJSVVRPVkxtTkN6NUkwZUFKTWtVWjJ2RmJTUHJORUVxc2FPMURDNmdmNWdFIn0.eyJleHAiOjE3OTUxNDY5OTcsImlhdCI6MTc5NTE0NjY5NywianRpIjoiN2ZjMDIyMDgtOGNjZi00MmY5LWE0OGEtMTk4OWJkOGZmMzIzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9zcHJpbmctbWljcm9zZXJ2aWNlcy1zZWN1cml0eS1yZWFsbSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI2NDU1MGIyZS05ODk3LTRjYWUtOTY2Ni00ODIzMmM5YTMyZDYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJzcHJpbmctY2xvdWQtY2xpZW50LWlkIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIvKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJkZWZhdWx0LXJvbGVzLXNwcmluZy1taWNyb3NlcnZpY2VzLXNlY3VyaXR5LXJlYWxtIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJjbGllbnRIb3N0IjoiMTcyLjE4LjAuMSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LXNwcmluZy1jbG91ZC1jbGllbnQtaWQiLCJjbGllbnRBZGRyZXNzIjoiMTcyLjE4LjAuMSIsImNsaWVudF9pZCI6InNwcmluZy1jbG91ZC1jbGllbnQtaWQifQ.Z8mR_DjoEnIQkEwOxgpGCK-KQNB8LRpoCAaVSz68loraPwK_VqmzkhvFjx3N1Ehqw7W0u0VSRPRv4TVCwNJipDSuztfIFmHdv-26BgeEl0VVCLaoxg7eMVU-D_58-jsfhRBoLrkxfQrGKPpwza80qjpLg3kAQU5NIkiU-PUI3NIbrVO7IvOL-VeA2_Vg19NmfOIg3l9EXyx3e33eleAw3JXlvwxaDotOaG_SacAAd1rQAOF6lbFM6FlkN0-jHSQW6le3sdhxW9Mkdk08KBPSqj5PU98iwauBxn_zx47sxxyLfYz0CXGnUHVt9EFt0fhuTYrCd9S1mO_l6aFf831FOQ
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> Invoke-RestMethod `
+>>     -Uri "http://localhost:9000/api/inventory?skuCode=iphone_15&quantity=10" `
+>>     -Headers @{ Authorization = "Bearer $token" }
+Invoke-RestMethod : The remote server returned an error: (401) Unauthorized.
 At line:1 char:1
-+ Invoke-RestMethod -Uri "http://localhost:9000/api/inventory?skuCode=i ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++ Invoke-RestMethod `
++ ~~~~~~~~~~~~~~~~~~~
     + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebException
     + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
 
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose ps -a
-NAME                                                               IMAGE                                                            COMMAND                  SERVICE                CREATED          STATUS                    PORTS
-spring-boot-3-microservices-course-master-api-gateway-1            spring-boot-3-microservices-course-master-api-gateway            "java -jar /app/app.…"   api-gateway            28 minutes ago   Up 27 minutes             0.0.0.0:9000->9000/tcp, [::]:9000->9000/tcp
-spring-boot-3-microservices-course-master-broker-1                 confluentinc/cp-kafka:7.5.0                                      "/etc/confluent/dock…"   broker                 28 minutes ago   Up 28 minutes (healthy)   9092/tcp
-spring-boot-3-microservices-course-master-inventory-service-1      spring-boot-3-microservices-course-master-inventory-service      "java -jar /app/app.…"   inventory-service      28 minutes ago   Up 28 minutes             8082/tcp
-spring-boot-3-microservices-course-master-keycloak-1               quay.io/keycloak/keycloak:24.0.1                                 "/opt/keycloak/bin/k…"   keycloak               11 minutes ago   Up 11 minutes             127.0.0.1:8181->8080/tcp
-spring-boot-3-microservices-course-master-mailpit-1                axllent/mailpit:latest                                           "/mailpit"               mailpit                28 minutes ago   Up 28 minutes (healthy)   127.0.0.1:8025->8025/tcp
-spring-boot-3-microservices-course-master-mongodb-1                mongo:7.0.5                                                      "docker-entrypoint.s…"   mongodb                28 minutes ago   Up 28 minutes (healthy)   27017/tcp
-spring-boot-3-microservices-course-master-mysql-1                  mysql:8.3.0                                                      "docker-entrypoint.s…"   mysql                  28 minutes ago   Up 28 minutes (healthy)   3306/tcp, 33060/tcp
-spring-boot-3-microservices-course-master-mysql-keycloak-1         mysql:8.3.0                                                      "docker-entrypoint.s…"   mysql-keycloak         28 minutes ago   Up 28 minutes (healthy)   3306/tcp, 33060/tcp
-spring-boot-3-microservices-course-master-notification-service-1   spring-boot-3-microservices-course-master-notification-service   "java -jar /app/app.…"   notification-service   28 minutes ago   Up 27 minutes             8083/tcp
-spring-boot-3-microservices-course-master-order-service-1          spring-boot-3-microservices-course-master-order-service          "java -jar /app/app.…"   order-service          28 minutes ago   Up 27 minutes             8081/tcp
-spring-boot-3-microservices-course-master-product-service-1        spring-boot-3-microservices-course-master-product-service        "java -jar /app/app.…"   product-service        28 minutes ago   Up 28 minutes             8080/tcp
-spring-boot-3-microservices-course-master-schema-registry-1        confluentinc/cp-schema-registry:7.5.0                            "/etc/confluent/dock…"   schema-registry        28 minutes ago   Up 28 minutes (healthy)   8081/tcp
-spring-boot-3-microservices-course-master-zookeeper-1              confluentinc/cp-zookeeper:7.5.0                                  "/etc/confluent/dock…"   zookeeper              28 minutes ago   Up 28 minutes             2181/tcp, 2888/tcp, 3888/tcp
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose logs --tail=100 api-gateway
-api-gateway-1  |
-api-gateway-1  |   .   ____          _            __ _ _
-api-gateway-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-api-gateway-1  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-api-gateway-1  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-api-gateway-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
-api-gateway-1  |  =========|_|==============|___/=/_/_/_/
-api-gateway-1  |  :: Spring Boot ::                (v3.2.4)
-api-gateway-1  |
-api-gateway-1  | 2026-11-20T03:27:08.469Z  INFO 1 --- [api-gateway] [           main] c.t.m.gateway.ApiGatewayApplication      : Starting ApiGatewayApplication v0.0.1-SNAPSHOT using Java 21.0.13 with PID 1 (/app/app.jar started by root in /app)
-api-gateway-1  | 2026-11-20T03:27:08.474Z  INFO 1 --- [api-gateway] [           main] c.t.m.gateway.ApiGatewayApplication      : No active profile set, falling back to 1 default profile: "default"
-api-gateway-1  | 2026-11-20T03:27:12.088Z  INFO 1 --- [api-gateway] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=2c0e5360-971f-313e-808a-61940de263cc
-api-gateway-1  | 2026-11-20T03:27:12.517Z  INFO 1 --- [api-gateway] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
-api-gateway-1  | 2026-11-20T03:27:12.537Z  INFO 1 --- [api-gateway] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-api-gateway-1  | 2026-11-20T03:27:12.537Z  INFO 1 --- [api-gateway] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-api-gateway-1  | 2026-11-20T03:27:12.595Z  INFO 1 --- [api-gateway] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-api-gateway-1  | 2026-11-20T03:27:12.597Z  INFO 1 --- [api-gateway] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3966 ms
-api-gateway-1  | 2026-11-20T03:27:13.746Z  INFO 1 --- [api-gateway] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-api-gateway-1  | 2026-11-20T03:27:13.914Z  INFO 1 --- [api-gateway] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@26ffd2c0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d28c214, org.springframework.security.web.context.SecurityContextHolderFilter@455f4483, org.springframework.security.web.header.HeaderWriterFilter@1657b017, org.springframework.web.filter.CorsFilter@2fc7fa6e, org.springframework.security.web.csrf.CsrfFilter@6e9a10cd, org.springframework.security.web.authentication.logout.LogoutFilter@43deba42, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@67a8bcbb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7996d0d4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@fcf9525, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7f8c48f3, org.springframework.security.web.access.ExceptionTranslationFilter@1ccdc7aa, org.springframework.security.web.access.intercept.AuthorizationFilter@a9e8da1]
-api-gateway-1  | 2026-11-20T03:27:14.700Z  INFO 1 --- [api-gateway] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path ''
-api-gateway-1  | 2026-11-20T03:27:14.730Z  INFO 1 --- [api-gateway] [           main] c.t.m.gateway.ApiGatewayApplication      : Started ApiGatewayApplication in 7.194 seconds (process running for 8.467)
-api-gateway-1  | 2026-11-20T03:27:19.170Z  INFO 1 --- [api-gateway] [nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-api-gateway-1  | 2026-11-20T03:27:19.171Z  INFO 1 --- [api-gateway] [nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-api-gateway-1  | 2026-11-20T03:27:19.178Z  INFO 1 --- [api-gateway] [nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose logs --tail=100 inventory-service
-inventory-service-1  |
-inventory-service-1  |   .   ____          _            __ _ _
-inventory-service-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-inventory-service-1  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-inventory-service-1  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-inventory-service-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
-inventory-service-1  |  =========|_|==============|___/=/_/_/_/
-inventory-service-1  |  :: Spring Boot ::                (v3.2.4)
-inventory-service-1  |
-inventory-service-1  | 2026-11-20T03:26:32.930Z  INFO 1 --- [inventory-service] [           main] c.t.m.i.InventoryServiceApplication      : Starting InventoryServiceApplication v1.0-SNAPSHOT using Java 21.0.13 with PID 1 (/app/app.jar started by root in /app)
-inventory-service-1  | 2026-11-20T03:26:32.939Z  INFO 1 --- [inventory-service] [           main] c.t.m.i.InventoryServiceApplication      : No active profile set, falling back to 1 default profile: "default"
-inventory-service-1  | 2026-11-20T03:26:36.142Z  INFO 1 --- [inventory-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-inventory-service-1  | 2026-11-20T03:26:36.244Z  INFO 1 --- [inventory-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 1 JPA repository interface.
-inventory-service-1  | 2026-11-20T03:26:37.679Z  INFO 1 --- [inventory-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-inventory-service-1  | 2026-11-20T03:26:37.715Z  INFO 1 --- [inventory-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-inventory-service-1  | 2026-11-20T03:26:37.716Z  INFO 1 --- [inventory-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-inventory-service-1  | 2026-11-20T03:26:37.893Z  INFO 1 --- [inventory-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-inventory-service-1  | 2026-11-20T03:26:37.896Z  INFO 1 --- [inventory-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4326 ms
-inventory-service-1  | 2026-11-20T03:26:38.670Z  INFO 1 --- [inventory-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-inventory-service-1  | 2026-11-20T03:26:39.927Z  INFO 1 --- [inventory-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@173b1af1
-inventory-service-1  | 2026-11-20T03:26:39.932Z  INFO 1 --- [inventory-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-inventory-service-1  | 2026-11-20T03:26:40.237Z  INFO 1 --- [inventory-service] [           main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
-inventory-service-1  | 2026-11-20T03:26:40.237Z  INFO 1 --- [inventory-service] [           main] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
-inventory-service-1  | 2026-11-20T03:26:40.238Z  INFO 1 --- [inventory-service] [           main] o.f.c.internal.license.VersionPrinter    :
-inventory-service-1  | 2026-11-20T03:26:40.408Z  INFO 1 --- [inventory-service] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://mysql:3306/inventory_service (MySQL 8.3)
-inventory-service-1  | 2026-11-20T03:26:40.452Z  WARN 1 --- [inventory-service] [           main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: MySQL 8.3 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.0.
-inventory-service-1  | 2026-11-20T03:26:40.608Z  INFO 1 --- [inventory-service] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.113s)
-inventory-service-1  | 2026-11-20T03:26:40.653Z  INFO 1 --- [inventory-service] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema `inventory_service`: 2
-inventory-service-1  | 2026-11-20T03:26:40.662Z  INFO 1 --- [inventory-service] [           main] o.f.core.internal.command.DbMigrate      : Schema `inventory_service` is up to date. No migration necessary.
-inventory-service-1  | 2026-11-20T03:26:40.935Z  INFO 1 --- [inventory-service] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-inventory-service-1  | 2026-11-20T03:26:41.068Z  INFO 1 --- [inventory-service] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-inventory-service-1  | 2026-11-20T03:26:41.156Z  INFO 1 --- [inventory-service] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-inventory-service-1  | 2026-11-20T03:26:41.658Z  INFO 1 --- [inventory-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-inventory-service-1  | 2026-11-20T03:26:44.022Z  INFO 1 --- [inventory-service] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-inventory-service-1  | 2026-11-20T03:26:44.031Z  INFO 1 --- [inventory-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-inventory-service-1  | 2026-11-20T03:26:46.111Z  WARN 1 --- [inventory-service] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-inventory-service-1  | 2026-11-20T03:26:47.999Z  INFO 1 --- [inventory-service] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-inventory-service-1  | 2026-11-20T03:26:48.178Z  INFO 1 --- [inventory-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-inventory-service-1  | 2026-11-20T03:26:48.211Z  INFO 1 --- [inventory-service] [           main] c.t.m.i.InventoryServiceApplication      : Started InventoryServiceApplication in 16.144 seconds (process running for 18.078)
-inventory-service-1  | 2026-11-20T03:27:20.598Z  INFO 1 --- [inventory-service] [nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-inventory-service-1  | 2026-11-20T03:27:20.599Z  INFO 1 --- [inventory-service] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-inventory-service-1  | 2026-11-20T03:27:20.607Z  INFO 1 --- [inventory-service] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
-inventory-service-1  | 2026-11-20T03:27:21.301Z  INFO 1 --- [inventory-service] [nio-8082-exec-1] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 527 ms
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master>
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> curl.exe -i -v --max-time 15 "http://localhost:9000/api/inventory?skuCode=iphone_15&quantity=10"
+*   Trying 127.0.0.1:9000...
+* Connected to localhost (127.0.0.1) port 9000 (#0)
+> GET /api/inventory?skuCode=iphone_15&quantity=10 HTTP/1.1
+> Host: localhost:9000
+> User-Agent: curl/8.0.1
+> Accept: */*
+>
+< HTTP/1.1 401
+HTTP/1.1 401
+< Vary: Origin
+Vary: Origin
+< Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Method
+< Vary: Access-Control-Request-Headers
+Vary: Access-Control-Request-Headers
+< Set-Cookie: JSESSIONID=9C03917276D6166EFCC6C24F8025E5D5; Path=/; HttpOnly
+Set-Cookie: JSESSIONID=9C03917276D6166EFCC6C24F8025E5D5; Path=/; HttpOnly
+< WWW-Authenticate: Bearer
+WWW-Authenticate: Bearer
+< X-Content-Type-Options: nosniff
+X-Content-Type-Options: nosniff
+< X-XSS-Protection: 0
+X-XSS-Protection: 0
+< Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+< Pragma: no-cache
+Pragma: no-cache
+< Expires: 0
+Expires: 0
+< X-Frame-Options: DENY
+X-Frame-Options: DENY
+< Content-Length: 0
+Content-Length: 0
+< Date: Fri, 20 Nov 2026 04:03:11 GMT
+Date: Fri, 20 Nov 2026 04:03:11 GMT
+
+<
+* Connection #0 to host localhost left intact
