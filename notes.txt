@@ -1,3 +1,96 @@
-{"configUrl":"/api-docs/swagger-config","oauth2RedirectUrl":"http://localhost:9000/swagger-ui/oauth2-redirect.html","urls":[{"url":"/aggregate/inventory-service/v3/api-docs","name":"Inventory Service"},{"url":"/aggregate/order-service/v3/api-docs","name":"Order Service"},{"url":"/aggregate/product-service/v3/api-docs","name":"Product Service"}],"validatorUrl":""}
-
-✕Merlin
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose up --build -d
+[+] Building 1501.3s (33/33) FINISHED
+ => [internal] load local bake definitions                                                                                                               0.0s
+ => => reading from stdin 3.85kB                                                                                                                         0.0s
+ => [order-service internal] load build definition from Dockerfile                                                                                       0.3s
+ => => transferring dockerfile: 388B                                                                                                                     0.2s
+ => [api-gateway internal] load metadata for docker.io/library/eclipse-temurin:21-jre                                                                    5.9s
+ => [notification-service internal] load metadata for docker.io/library/maven:3.9.9-eclipse-temurin-21                                                   5.9s
+ => [auth] library/maven:pull token for registry-1.docker.io                                                                                             0.0s
+ => [auth] library/eclipse-temurin:pull token for registry-1.docker.io                                                                                   0.0s
+ => [product-service internal] load .dockerignore                                                                                                        0.2s
+ => => transferring context: 289B                                                                                                                        0.1s
+ => [inventory-service build 1/4] FROM docker.io/library/maven:3.9.9-eclipse-temurin-21@sha256:3a4ab3276a087bf276f79cae96b1af04f53731bec53fb2e651aca79e  0.3s
+ => => resolve docker.io/library/maven:3.9.9-eclipse-temurin-21@sha256:3a4ab3276a087bf276f79cae96b1af04f53731bec53fb2e651aca79e4b10211e                  0.3s
+ => [notification-service stage-1 1/3] FROM docker.io/library/eclipse-temurin:21-jre@sha256:ca73b4d3961703d6d7830a4361f49ef0478f8f28b39defc07bb72f4cc7f  0.3s
+ => => resolve docker.io/library/eclipse-temurin:21-jre@sha256:ca73b4d3961703d6d7830a4361f49ef0478f8f28b39defc07bb72f4cc7f834f6                          0.3s
+ => [inventory-service internal] load build context                                                                                                      0.5s
+ => => transferring context: 11.63kB                                                                                                                     0.4s
+ => CACHED [api-gateway build 2/4] WORKDIR /workspace                                                                                                    0.0s
+ => CACHED [api-gateway build 3/4] COPY . .                                                                                                              0.0s
+ => CACHED [inventory-service stage-1 2/3] WORKDIR /app                                                                                                  0.0s
+ => CACHED [notification-service build 4/4] RUN mvn -B -ntp -pl "notification-service" -am clean package -DskipTests     && cp "notification-service"/t  0.0s
+ => CACHED [notification-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                                                               0.0s
+ => [order-service build 4/4] RUN mvn -B -ntp -pl "order-service" -am clean package -DskipTests     && cp "order-service"/target/*.jar /workspace/ap  1415.6s
+ => [inventory-service build 4/4] RUN mvn -B -ntp -pl "inventory-service" -am clean package -DskipTests     && cp "inventory-service"/target/*.jar /w  410.7s
+ => [product-service build 4/4] RUN mvn -B -ntp -pl "product-service" -am clean package -DskipTests     && cp "product-service"/target/*.jar /workspa  394.5s
+ => [api-gateway build 4/4] RUN mvn -B -ntp -pl "api-gateway" -am clean package -DskipTests     && cp "api-gateway"/target/*.jar /workspace/app.jar    383.6s
+ => [notification-service] exporting to image                                                                                                            1.9s
+ => => exporting layers                                                                                                                                  0.1s
+ => => exporting manifest sha256:1e3cb12bc21a7a70096a82cd0fe5d157c976043656e7e7115f85d65a6670074a                                                        0.0s
+ => => exporting config sha256:cef7d9402b05852136f9e2969a476893e272899e15a315ecd58ebe5fa73b652d                                                          0.0s
+ => => exporting attestation manifest sha256:c36abc77368c86d75c63692e44453b758ee2ba319ff8f0da3941fac9e960fdd1                                            0.2s
+ => => exporting manifest list sha256:9af4fce8a7ca2c37e44f495bfd7686d7e887b3ac7c5a559d9831ed3af124d725                                                   0.2s
+ => => naming to docker.io/library/spring-boot-3-microservices-course-master-notification-service:latest                                                 0.1s
+ => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-notification-service:latest                                              0.2s
+ => [notification-service] resolving provenance for metadata file                                                                                        0.4s
+ => [api-gateway stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                                                                               1.9s
+ => [api-gateway] exporting to image                                                                                                                    34.9s
+ => => exporting layers                                                                                                                                 30.4s
+ => => exporting manifest sha256:3b7f7741f0aa6f6f850156a3ea02edecb8b47a434d6236893a58af15c77a80ec                                                        0.1s
+ => => exporting config sha256:595a7a6a5725a3e6d68ec0b4d3da70560904872db7510ff4773dbf28b75d6669                                                          0.1s
+ => => exporting attestation manifest sha256:a855c8496d7ed907ea35354bd194e55d6e30486070567401828d3730d7f1c715                                            0.1s
+ => => exporting manifest list sha256:d75cf77ced3ceb06bdc471fc4d064114906a7a37e28ebd6892dbb5fa98b865cd                                                   0.1s
+ => => naming to docker.io/library/spring-boot-3-microservices-course-master-api-gateway:latest                                                          0.0s
+ => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-api-gateway:latest                                                       3.3s
+ => [product-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                                                                           1.2s
+ => [product-service] exporting to image                                                                                                                34.7s
+ => => exporting layers                                                                                                                                 29.7s
+ => => exporting manifest sha256:7f72325e304bd1e728f2bd3adfb07b051df7f549f2b62ed7c77d999f48c237b4                                                        0.2s
+ => => exporting config sha256:4ba8b54d3ac877f8034ea8de75bfb609e6df73535b46dbef8bf69e1e381f3f49                                                          0.2s
+ => => exporting attestation manifest sha256:177ed476bab4a876ef24f6f33fede1984a9310306bddde9d68edfa26c21b8628                                            0.2s
+ => => exporting manifest list sha256:204e35ab317fdbe57e1e78178123f883a24a2d436e8df8aae2886cd0530fb341                                                   0.1s
+ => => naming to docker.io/library/spring-boot-3-microservices-course-master-product-service:latest                                                      0.0s
+ => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-product-service:latest                                                   3.3s
+ => [inventory-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                                                                         1.5s
+ => [inventory-service] exporting to image                                                                                                              46.1s
+ => => exporting layers                                                                                                                                 40.5s
+ => => exporting manifest sha256:4b186f3c6e8cb821d0aeaec6413bac7925177cf3183010fa85d826c934bafa4e                                                        0.1s
+ => => exporting config sha256:8a4ea60fec1e6c035c7037bd5807e046901d91c24f7759cdc1a2fd0a7d840ddb                                                          0.1s
+ => => exporting attestation manifest sha256:fa4ff5f711b5eb3db7de5845ec777a3feb0da3b4b61e194a6fd0c84d0d854c63                                            0.1s
+ => => exporting manifest list sha256:220c42602ba7092494d58e1220d4cf70beef2580972e6500f171fb981ad898de                                                   0.1s
+ => => naming to docker.io/library/spring-boot-3-microservices-course-master-inventory-service:latest                                                    0.0s
+ => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-inventory-service:latest                                                 4.5s
+ => [api-gateway] resolving provenance for metadata file                                                                                                 0.4s
+ => [product-service] resolving provenance for metadata file                                                                                             0.4s
+ => [inventory-service] resolving provenance for metadata file                                                                                           0.2s
+ => [order-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                                                                             2.9s
+ => [order-service] exporting to image                                                                                                                  58.8s
+ => => exporting layers                                                                                                                                 46.7s
+ => => exporting manifest sha256:b1e86cc632bf158430c93918fbcc0932dea1a9e7b8f0f7bcec854a8cc9d93a55                                                        0.1s
+ => => exporting config sha256:45c7ce3a160cc4abd1b772fe81de0d7ef62668c571f8bcb021673781ece6dde5                                                          0.1s
+ => => exporting attestation manifest sha256:7974523b7e173175c3f82719780589cb0e3dc422b7f2e968d1bef6fceea9d0b3                                            0.2s
+ => => exporting manifest list sha256:35d5c840c9d464d218c93a6be5d4ebe647e87ba4652a145687b112e2bb3452ea                                                   0.1s
+ => => naming to docker.io/library/spring-boot-3-microservices-course-master-order-service:latest                                                        0.0s
+ => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-order-service:latest                                                    10.9s
+ => [order-service] resolving provenance for metadata file                                                                                               0.4s
+[+] up 18/18
+ ✔ Image spring-boot-3-microservices-course-master-product-service            Built                                                                    1504.5s
+ ✔ Image spring-boot-3-microservices-course-master-api-gateway                Built                                                                    1505.0s
+ ✔ Image spring-boot-3-microservices-course-master-inventory-service          Built                                                                    1503.7s
+ ✔ Image spring-boot-3-microservices-course-master-notification-service       Built                                                                    1503.3s
+ ✔ Image spring-boot-3-microservices-course-master-order-service              Built                                                                    1504.1s
+ ✔ Container spring-boot-3-microservices-course-master-inventory-service-1    Started                                                                   122.2s
+ ✘ Container spring-boot-3-microservices-course-master-product-service-1      not started: condition "service_healthy" of service "mongodb" not met       2.9s
+ ✘ Container spring-boot-3-microservices-course-master-notification-service-1 not started: condition "service_healthy" of service "broker" not reac...    2.9s
+ ✘ Container spring-boot-3-microservices-course-master-order-service-1        not started: condition "service_healthy" of service "broker" not reac...    1.9s
+ ✘ Container spring-boot-3-microservices-course-master-api-gateway-1          not started: condition "service_healthy" of service "mongodb" not met       1.9s
+ ✔ Container spring-boot-3-microservices-course-master-mailpit-1              Started                                                                    29.6s
+ ✔ Container spring-boot-3-microservices-course-master-mysql-keycloak-1       Healthy                                                                   100.3s
+ ✔ Container spring-boot-3-microservices-course-master-zookeeper-1            Started                                                                     9.5s
+ ✔ Container spring-boot-3-microservices-course-master-mysql-1                Healthy                                                                   100.6s
+ ✘ Container spring-boot-3-microservices-course-master-mongodb-1              Error dependency mongodb failed to start                                  200.6s
+ ! Container spring-boot-3-microservices-course-master-broker-1               Skipped: condition "service_healthy" of service "broker" not reached:...  191.1s
+ ✔ Container spring-boot-3-microservices-course-master-keycloak-1             Started                                                                     8.8s
+ ✘ Container spring-boot-3-microservices-course-master-schema-registry-1      not started: condition "service_healthy" of service "broker" not reac...    0.0s
+dependency failed to start: container spring-boot-3-microservices-course-master-mongodb-1 is unhealthy
