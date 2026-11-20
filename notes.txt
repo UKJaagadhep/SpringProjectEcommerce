@@ -1,6 +1,19 @@
-$payload = $token.Split('.')[1].Replace('-', '+').Replace('_', '/')
-$payload = $payload.PadRight($payload.Length + (4 - $payload.Length % 4) % 4, '=')
-$claims = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($payload)) | ConvertFrom-Json
-"Token issuer: $($claims.iss)"
-"Token expires: $([DateTimeOffset]::FromUnixTimeSeconds([long]$claims.exp).ToLocalTime())"
-docker compose exec -T api-gateway printenv SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $payload = $token.Split('.')[1].Replace('-', '+').Replace('_', '/')
+>> $payload = $payload.PadRight($payload.Length + (4 - $payload.Length % 4) % 4, '=')
+>> $claims = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($payload)) | ConvertFrom-Json
+>> "Token issuer: $($claims.iss)"
+>> "Token expires: $([DateTimeOffset]::FromUnixTimeSeconds([long]$claims.exp).ToLocalTime())"
+>> docker compose exec -T api-gateway printenv SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+Token issuer: http://localhost:8181/realms/spring-microservices-security-realm
+Token expires: 11/20/2026 09:26:37 +05:30
+http://localhost:8181/realms/spring-microservices-security-realm
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $payload = $token.Split('.')[1].Replace('-', '+').Replace('_', '/')
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $payload = $payload.PadRight($payload.Length + (4 - $payload.Length % 4) % 4, '=')
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $claims = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($payload)) | ConvertFrom-Json
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> "Token issuer: $($claims.iss)"
+Token issuer: http://localhost:8181/realms/spring-microservices-security-realm
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> "Token expires: $([DateTimeOffset]::FromUnixTimeSeconds([long]$claims.exp).ToLocalTime())"
+Token expires: 11/20/2026 09:26:37 +05:30
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose exec -T api-gateway printenv SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+http://localhost:8181/realms/spring-microservices-security-realm
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master>
