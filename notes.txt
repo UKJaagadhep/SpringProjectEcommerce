@@ -1,51 +1,6 @@
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $token
-eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJSVVRPVkxtTkN6NUkwZUFKTWtVWjJ2RmJTUHJORUVxc2FPMURDNmdmNWdFIn0.eyJleHAiOjE3OTUxNDY5OTcsImlhdCI6MTc5NTE0NjY5NywianRpIjoiN2ZjMDIyMDgtOGNjZi00MmY5LWE0OGEtMTk4OWJkOGZmMzIzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9zcHJpbmctbWljcm9zZXJ2aWNlcy1zZWN1cml0eS1yZWFsbSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI2NDU1MGIyZS05ODk3LTRjYWUtOTY2Ni00ODIzMmM5YTMyZDYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJzcHJpbmctY2xvdWQtY2xpZW50LWlkIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIvKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJkZWZhdWx0LXJvbGVzLXNwcmluZy1taWNyb3NlcnZpY2VzLXNlY3VyaXR5LXJlYWxtIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJjbGllbnRIb3N0IjoiMTcyLjE4LjAuMSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LXNwcmluZy1jbG91ZC1jbGllbnQtaWQiLCJjbGllbnRBZGRyZXNzIjoiMTcyLjE4LjAuMSIsImNsaWVudF9pZCI6InNwcmluZy1jbG91ZC1jbGllbnQtaWQifQ.Z8mR_DjoEnIQkEwOxgpGCK-KQNB8LRpoCAaVSz68loraPwK_VqmzkhvFjx3N1Ehqw7W0u0VSRPRv4TVCwNJipDSuztfIFmHdv-26BgeEl0VVCLaoxg7eMVU-D_58-jsfhRBoLrkxfQrGKPpwza80qjpLg3kAQU5NIkiU-PUI3NIbrVO7IvOL-VeA2_Vg19NmfOIg3l9EXyx3e33eleAw3JXlvwxaDotOaG_SacAAd1rQAOF6lbFM6FlkN0-jHSQW6le3sdhxW9Mkdk08KBPSqj5PU98iwauBxn_zx47sxxyLfYz0CXGnUHVt9EFt0fhuTYrCd9S1mO_l6aFf831FOQ
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> Invoke-RestMethod `
->>     -Uri "http://localhost:9000/api/inventory?skuCode=iphone_15&quantity=10" `
->>     -Headers @{ Authorization = "Bearer $token" }
-Invoke-RestMethod : The remote server returned an error: (401) Unauthorized.
-At line:1 char:1
-+ Invoke-RestMethod `
-+ ~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebException
-    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
-
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> curl.exe -i -v --max-time 15 "http://localhost:9000/api/inventory?skuCode=iphone_15&quantity=10"
-*   Trying 127.0.0.1:9000...
-* Connected to localhost (127.0.0.1) port 9000 (#0)
-> GET /api/inventory?skuCode=iphone_15&quantity=10 HTTP/1.1
-> Host: localhost:9000
-> User-Agent: curl/8.0.1
-> Accept: */*
->
-< HTTP/1.1 401
-HTTP/1.1 401
-< Vary: Origin
-Vary: Origin
-< Vary: Access-Control-Request-Method
-Vary: Access-Control-Request-Method
-< Vary: Access-Control-Request-Headers
-Vary: Access-Control-Request-Headers
-< Set-Cookie: JSESSIONID=9C03917276D6166EFCC6C24F8025E5D5; Path=/; HttpOnly
-Set-Cookie: JSESSIONID=9C03917276D6166EFCC6C24F8025E5D5; Path=/; HttpOnly
-< WWW-Authenticate: Bearer
-WWW-Authenticate: Bearer
-< X-Content-Type-Options: nosniff
-X-Content-Type-Options: nosniff
-< X-XSS-Protection: 0
-X-XSS-Protection: 0
-< Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-< Pragma: no-cache
-Pragma: no-cache
-< Expires: 0
-Expires: 0
-< X-Frame-Options: DENY
-X-Frame-Options: DENY
-< Content-Length: 0
-Content-Length: 0
-< Date: Fri, 20 Nov 2026 04:03:11 GMT
-Date: Fri, 20 Nov 2026 04:03:11 GMT
-
-<
-* Connection #0 to host localhost left intact
+$payload = $token.Split('.')[1].Replace('-', '+').Replace('_', '/')
+$payload = $payload.PadRight($payload.Length + (4 - $payload.Length % 4) % 4, '=')
+$claims = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($payload)) | ConvertFrom-Json
+"Token issuer: $($claims.iss)"
+"Token expires: $([DateTimeOffset]::FromUnixTimeSeconds([long]$claims.exp).ToLocalTime())"
+docker compose exec -T api-gateway printenv SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
