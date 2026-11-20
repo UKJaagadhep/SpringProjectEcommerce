@@ -1,1 +1,4 @@
-docker run --rm --network "container:$(docker compose ps -q api-gateway)" --entrypoint curl confluentinc/cp-schema-registry:7.5.0 -sS -i --max-time 10 'http://inventory-service:8082/api/inventory?skuCode=iphone_15&quantity=10'
+$token = (Invoke-RestMethod -Method Post `
+  -Uri 'http://localhost:8181/realms/spring-microservices-security-realm/protocol/openid-connect/token' `
+  -Body @{ grant_type = 'client_credentials'; client_id = 'spring-cloud-client-id'; client_secret = $secret }).access_token
+curl.exe --noproxy '*' -sS -i --max-time 20 -H "Authorization: Bearer $token" 'http://127.0.0.1:9000/api/inventory?skuCode=iphone_15&quantity=10'
