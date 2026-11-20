@@ -1,80 +1,16 @@
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> if (-not (Test-Path .env)) { Copy-Item .env.example .env }
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose config --quiet
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose up --build -d
-[+] Building 4.2s (33/33) FINISHED
- => [internal] load local bake definitions                                                                         0.0s
- => => reading from stdin 3.85kB                                                                                   0.0s
- => [api-gateway internal] load build definition from Dockerfile                                                   0.0s
- => => transferring dockerfile: 388B                                                                               0.0s
- => [product-service internal] load metadata for docker.io/library/maven:3.9.9-eclipse-temurin-21                  2.3s
- => [product-service internal] load metadata for docker.io/library/eclipse-temurin:21-jre                          2.3s
- => [auth] library/eclipse-temurin:pull token for registry-1.docker.io                                             0.0s
- => [auth] library/maven:pull token for registry-1.docker.io                                                       0.0s
- => [order-service internal] load .dockerignore                                                                    0.0s
- => => transferring context: 2B                                                                                    0.0s
- => [api-gateway build 1/4] FROM docker.io/library/maven:3.9.9-eclipse-temurin-21@sha256:3a4ab3276a087bf276f79cae  0.0s
- => => resolve docker.io/library/maven:3.9.9-eclipse-temurin-21@sha256:3a4ab3276a087bf276f79cae96b1af04f53731bec5  0.0s
- => [notification-service internal] load build context                                                             0.2s
- => => transferring context: 135.17kB                                                                              0.2s
- => [inventory-service stage-1 1/3] FROM docker.io/library/eclipse-temurin:21-jre@sha256:ca73b4d3961703d6d7830a43  0.0s
- => => resolve docker.io/library/eclipse-temurin:21-jre@sha256:ca73b4d3961703d6d7830a4361f49ef0478f8f28b39defc07b  0.0s
- => CACHED [product-service stage-1 2/3] WORKDIR /app                                                              0.0s
- => CACHED [product-service build 2/4] WORKDIR /workspace                                                          0.0s
- => CACHED [product-service build 3/4] COPY . .                                                                    0.0s
- => CACHED [notification-service build 4/4] RUN mvn -B -ntp -pl "notification-service" -am clean package -DskipTe  0.0s
- => CACHED [notification-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                         0.0s
- => CACHED [api-gateway build 4/4] RUN mvn -B -ntp -pl "api-gateway" -am clean package -DskipTests     && cp "api  0.0s
- => CACHED [api-gateway stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                                  0.0s
- => CACHED [inventory-service build 4/4] RUN mvn -B -ntp -pl "inventory-service" -am clean package -DskipTests     0.0s
- => CACHED [inventory-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                            0.0s
- => CACHED [order-service build 4/4] RUN mvn -B -ntp -pl "order-service" -am clean package -DskipTests     && cp   0.0s
- => CACHED [order-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                                0.0s
- => CACHED [product-service build 4/4] RUN mvn -B -ntp -pl "product-service" -am clean package -DskipTests     &&  0.0s
- => CACHED [product-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                              0.0s
- => [api-gateway] exporting to image                                                                               0.2s
- => => exporting layers                                                                                            0.0s
- => => exporting manifest sha256:ee370c47f971f86ac93de1fd7cb3ae18891d52ac95bf3c3aaab84bf88c674823                  0.0s
- => => exporting config sha256:2ce7ccb408533a87f8a36a1042e879c377e2a93c83f0a4635d3f35e9d9deeec2                    0.0s
- => => exporting attestation manifest sha256:586086f48895b621a9719c08912c8111e017696bc1d056ab85af332d0f4defc5      0.1s
- => => exporting manifest list sha256:cc3a9069ec09796b5f1e38cba15c1905a32dd0fc3bbd48bf54671ba728ec3803             0.0s
- => => naming to docker.io/library/spring-boot-3-microservices-course-master-api-gateway:latest                    0.0s
- => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-api-gateway:latest                 0.0s
- => [order-service] exporting to image                                                                             0.2s
- => => exporting layers                                                                                            0.0s
- => => exporting manifest sha256:1264eace0183637edb17a2ca4b90bd27dae8f20ea02b07c2e52ac19e078e7f67                  0.0s
- => => exporting config sha256:8d6e2976437a15d856018dbc4d817cde32463e76a56491fb7013e258e12f2f73                    0.0s
- => => exporting attestation manifest sha256:82a9bb244aeb4ffa8ebf2ebc6478adf8ad6424d784ec728630691c0d0708bac0      0.1s
- => => exporting manifest list sha256:76b55c685dfb10ddb9cae1b303d320917c4beb95983d60b0b44e28bb3328f3d5             0.0s
- => => naming to docker.io/library/spring-boot-3-microservices-course-master-order-service:latest                  0.0s
- => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-order-service:latest               0.0s
- => [product-service] exporting to image                                                                           0.2s
- => => exporting layers                                                                                            0.0s
- => => exporting manifest sha256:0cae0ed273683bc0019344de7f99b29b967d5c7eea5b1b000f286bd8a5558990                  0.0s
- => => exporting config sha256:b6f69c7257528174d2d379f5878d0161df907eae6a2377869b45c74b1f3cf383                    0.0s
- => => exporting attestation manifest sha256:722ab2b994677de5b31f707ade8aa7d6ef370b0905bd5a9df99774d486a0b98c      0.1s
- => => exporting manifest list sha256:2090f124cc6872e9616a864fc0a748e6bbfae478f15f233a04077108ae0a6a62             0.0s
- => => naming to docker.io/library/spring-boot-3-microservices-course-master-product-service:latest                0.0s
- => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-product-service:latest             0.0s
- => [notification-service] exporting to image                                                                      0.2s
- => => exporting layers                                                                                            0.0s
- => => exporting manifest sha256:9385fbd474f9aad329279653e6da8e7a0d72095fd4cb70a2120f52396951f9b5                  0.0s
- => => exporting config sha256:02f2c50b9de024599e4f4cb7559bcd3fc0c110aa6792ec5ceab8265a81465cf9                    0.0s
- => => exporting attestation manifest sha256:e95e76f7e6e04c08a886212aa26528e37561ab8a017831457b4bb080b0c38e0f      0.1s
- => => exporting manifest list sha256:e4bfda32e508ef335cd67f199159da55e5280a55ac56f4373d2bb41fdc64fa69             0.0s
- => => naming to docker.io/library/spring-boot-3-microservices-course-master-notification-service:latest           0.0s
- => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-notification-service:latest        0.0s
- => [inventory-service] exporting to image                                                                         0.2s
- => => exporting layers                                                                                            0.0s
- => => exporting manifest sha256:12e398d08c616d80a2b7d02dc4b0cf7f8f5e975683295dd12cbe853983217cc5                  0.0s
- => => exporting config sha256:d15138d6eb0ac774df8631a3f15229e3990f0303b86785e9afe86eb63a149c23                    0.0s
- => => exporting attestation manifest sha256:b98b5571468f5c18db351cb64e188dc47d550a2e1f3ad3da3b254543d6a5e4fb      0.1s
- => => exporting manifest list sha256:607af1ccd965517cc38929c9e3fea22dc0fa68e81c1cd110d8fa4edab5fed1f7             0.0s
- => => naming to docker.io/library/spring-boot-3-microservices-course-master-inventory-service:latest              0.0s
- => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-inventory-service:latest           0.0s
- => [api-gateway] resolving provenance for metadata file                                                           0.1s
- => [product-service] resolving provenance for metadata file                                                       0.1s
- => [notification-service] resolving provenance for metadata file                                                  0.1s
- => [order-service] resolving provenance for metadata file                                                         0.0s
- => [inventory-service] resolving provenance for metadata file                                                     0.0s
-[+] up 18/18
- ✔ Image spring-boot-3-microservices-course-master-inventory-service          Built                                 4.5s ✔ Image spring-boot-3-microservices-course-master-order-service              Built                                 4.4s ✔ Image spring-boot-3-microservices-course-master-product-service            Built                                 4.5s ✔ Image spring-boot-3-microservices-course-master-notification-service       Built                                 4.5s ✔ Image spring-boot-3-microservices-course-master-api-gateway                Built                                 4.5s ✔ Container spring-boot-3-microservices-course-master-mysql-keycloak-1       Healthy                              10.9s ✔ Container spring-boot-3-microservices-course-master-mysql-1                Healthy                              11.1s ✔ Container spring-boot-3-microservices-course-master-mongodb-1              Healthy                              12.8s ✔ Container spring-boot-3-microservices-course-master-zookeeper-1            Started                               0.8s ✔ Container spring-boot-3-microservices-course-master-mailpit-1              Started                               1.0s ✔ Container spring-boot-3-microservices-course-master-broker-1               Healthy                              13.4s ✔ Container spring-boot-3-microservices-course-master-keycloak-1             Started                               0.2s ✔ Container spring-boot-3-microservices-course-master-inventory-service-1    Started                               0.2s ✔ Container spring-boot-3-microservices-course-master-product-service-1      Started                               0.3s ✔ Container spring-boot-3-microservices-course-master-schema-registry-1      Healthy                              31.8s ✔ Container spring-boot-3-microservices-course-master-order-service-1        Started                               0.7s ✔ Container spring-boot-3-microservices-course-master-notification-service-1 Started                               1.0s ✔ Container spring-boot-3-microservices-course-master-api-gateway-1          Started                               0.8sPS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master>
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose ps -a
+NAME                                                               IMAGE                                                                     COMMAND                  SERVICE                CREATED         STATUS                   PORTS
+spring-boot-3-microservices-course-master-api-gateway-1            sha256:78dc9432f85585209d7d364fb4c228142844dfab94ae0df05dc4d7f870ea9e20   "java -jar /app/app.…"   api-gateway            5 hours ago     Up 5 minutes             0.0.0.0:9000->9000/tcp, [::]:9000->9000/tcp
+spring-boot-3-microservices-course-master-broker-1                 confluentinc/cp-kafka:7.5.0                                               "/etc/confluent/dock…"   broker                 5 hours ago     Up 6 minutes (healthy)   9092/tcp
+spring-boot-3-microservices-course-master-inventory-service-1      sha256:e3bd90e5d3eeeba90945459de47647a3bb6e57778a71b199c13328c6604ef201   "java -jar /app/app.…"   inventory-service      5 hours ago     Up 6 minutes             8082/tcp
+spring-boot-3-microservices-course-master-keycloak-1               quay.io/keycloak/keycloak:24.0.1                                          "/opt/keycloak/bin/k…"   keycloak               5 hours ago     Up 6 minutes             127.0.0.1:8181->8080/tcp
+spring-boot-3-microservices-course-master-mailpit-1                axllent/mailpit:latest                                                    "/mailpit"               mailpit                5 hours ago     Up 6 minutes (healthy)   127.0.0.1:8025->8025/tcp
+spring-boot-3-microservices-course-master-mongodb-1                mongo:7.0.5                                                               "docker-entrypoint.s…"   mongodb                6 minutes ago   Up 6 minutes (healthy)   27017/tcp
+spring-boot-3-microservices-course-master-mysql-1                  mysql:8.3.0                                                               "docker-entrypoint.s…"   mysql                  6 minutes ago   Up 6 minutes (healthy)   3306/tcp, 33060/tcp
+spring-boot-3-microservices-course-master-mysql-keycloak-1         mysql:8.3.0                                                               "docker-entrypoint.s…"   mysql-keycloak         6 minutes ago   Up 6 minutes (healthy)   3306/tcp, 33060/tcp
+spring-boot-3-microservices-course-master-notification-service-1   sha256:13b3254d1e9408d15b881a48a3e65f035a8ad971ad3ce913d95bbddf1d2cbcf6   "java -jar /app/app.…"   notification-service   5 hours ago     Up 5 minutes             8083/tcp
+spring-boot-3-microservices-course-master-order-service-1          sha256:bf37feccc0e52a83442bb9f43e5ea6f5e10c64099ed9945ededb0f450fbef769   "java -jar /app/app.…"   order-service          5 hours ago     Up 5 minutes             8081/tcp
+spring-boot-3-microservices-course-master-product-service-1        sha256:69a235d0e9ad8b5c75c74e475aa366a260b6580a528196e3df221b94145a9e18   "java -jar /app/app.…"   product-service        5 hours ago     Up 5 minutes             8080/tcp
+spring-boot-3-microservices-course-master-schema-registry-1        confluentinc/cp-schema-registry:7.5.0                                     "/etc/confluent/dock…"   schema-registry        5 hours ago     Up 5 minutes (healthy)   8081/tcp
+spring-boot-3-microservices-course-master-zookeeper-1              confluentinc/cp-zookeeper:7.5.0                                           "/etc/confluent/dock…"   zookeeper              5 hours ago     Up 6 minutes             2181/tcp, 2888/tcp, 3888/tcp
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master>
