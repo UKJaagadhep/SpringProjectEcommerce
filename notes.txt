@@ -1,98 +1,80 @@
- > [notification-service build 4/4] RUN mvn -B -ntp -pl "notification-service" -am package -DskipTests     && cp "notification-service"/target/*.jar /workspace/app.jar:
-39.26 [INFO] Scanning for projects...
-87.59 [WARNING]
-87.59 [WARNING] Some problems were encountered while building the effective model for com.programming.techie:order-service:jar:1.0-SNAPSHOT
-87.60 [WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.testcontainers:junit-jupiter:jar -> duplicate declaration of version (?) @ line 112, column 21
-87.60 [WARNING]
-87.60 [WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
-87.61 [WARNING]
-87.61 [WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
-87.63 [WARNING]
-88.02 [INFO] ------------------------------------------------------------------------
-88.02 [INFO] Reactor Build Order:
-88.02 [INFO]
-88.08 [INFO] spring-boot-3-microservices                                        [pom]
-88.09 [INFO] notification-service                                               [jar]
-88.65 [INFO]
-88.68 [INFO] ---------< com.programming.techie:spring-boot-3-microservices >---------
-88.71 [INFO] Building spring-boot-3-microservices 1.0-SNAPSHOT                  [1/2]
-88.73 [INFO]   from pom.xml
-88.75 [INFO] --------------------------------[ pom ]---------------------------------
-90.71 [INFO]
-90.72 [INFO] --- spring-boot:3.2.4:repackage (repackage) @ spring-boot-3-microservices ---
-162.0 [INFO]
-162.0 [INFO] ------------< com.programming.techie:notification-service >-------------
-162.0 [INFO] Building notification-service 1.0-SNAPSHOT                         [2/2]
-162.0 [INFO]   from notification-service/pom.xml
-162.0 [INFO] --------------------------------[ jar ]---------------------------------
-734.5 [INFO]
-734.5 [INFO] --- avro:1.11.3:schema (schemas) @ notification-service ---
-745.0 [INFO]
-745.0 [INFO] --- resources:3.3.1:resources (default-resources) @ notification-service ---
-747.9 [INFO] Copying 1 resource from src/main/resources to target/classes
-748.3 [INFO] Copying 1 resource from src/main/resources to target/classes
-748.3 [INFO]
-748.3 [INFO] --- compiler:3.11.0:compile (default-compile) @ notification-service ---
-754.2 [INFO] Changes detected - recompiling the module! :input tree
-754.3 [INFO] Compiling 3 source files with javac [debug release 21] to target/classes
-769.2 [INFO] Annotation processing is enabled because one or more processors were found
-769.2   on the class path. A future release of javac may disable annotation processing
-769.2   unless at least one processor is specified by name (-processor), or a search
-769.2   path is specified (--processor-path, --processor-module-path), or annotation
-769.2   processing is enabled explicitly (-proc:only, -proc:full).
-769.2   Use -Xlint:-options to suppress this message.
-769.2   Use -proc:none to disable annotation processing.
-769.2 [INFO] -------------------------------------------------------------
-769.2 [ERROR] COMPILATION ERROR :
-769.2 [INFO] -------------------------------------------------------------
-769.2 [ERROR] /workspace/notification-service/target/generated/avro/com/techie/microservices/order/event/OrderPlacedEvent.java:[8,23] cannot find symbol
-769.2   symbol:   class JsonSchemaParser
-769.2   location: package org.apache.avro
-769.2 [INFO] 1 error
-769.2 [INFO] -------------------------------------------------------------
-769.3 [INFO] ------------------------------------------------------------------------
-769.3 [INFO] Reactor Summary for spring-boot-3-microservices 1.0-SNAPSHOT:
-769.3 [INFO]
-769.3 [INFO] spring-boot-3-microservices ........................ SUCCESS [01:13 min]
-769.3 [INFO] notification-service ............................... FAILURE [10:07 min]
-769.3 [INFO] ------------------------------------------------------------------------
-769.3 [INFO] BUILD FAILURE
-769.3 [INFO] ------------------------------------------------------------------------
-769.3 [INFO] Total time:  12:10 min
-769.3 [INFO] Finished at: 2026-11-19T19:01:09Z
-769.3 [INFO] ------------------------------------------------------------------------
-769.3 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project notification-service: Compilation failure
-769.3 [ERROR] /workspace/notification-service/target/generated/avro/com/techie/microservices/order/event/OrderPlacedEvent.java:[8,23] cannot find symbol
-769.3 [ERROR]   symbol:   class JsonSchemaParser
-769.4 [ERROR]   location: package org.apache.avro
-769.4 [ERROR] -> [Help 1]
-769.4 [ERROR]
-769.4 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-769.4 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
-769.4 [ERROR]
-769.4 [ERROR] For more information about the errors and possible solutions, please read the following articles:
-769.4 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
-769.4 [ERROR]
-769.4 [ERROR] After correcting the problems, you can resume the build with the command
-769.4 [ERROR]   mvn <args> -rf :notification-service
-------
-Dockerfile:6
-
---------------------
-
-   5 |     COPY . .
-
-   6 | >>> RUN mvn -B -ntp -pl "${SERVICE}" -am package -DskipTests \
-
-   7 | >>>     && cp "${SERVICE}"/target/*.jar /workspace/app.jar
-
-   8 |
-
---------------------
-
-target notification-service: failed to solve: process "/bin/sh -c mvn -B -ntp -pl \"${SERVICE}\" -am package -DskipTests     && cp \"${SERVICE}\"/target/*.jar /workspace/app.jar" did not complete successfully: exit code: 1
-
-
-What's next:
-    Debug this Compose error with Gordon → docker ai "help me fix this compose error"
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master>
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> if (-not (Test-Path .env)) { Copy-Item .env.example .env }
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose config --quiet
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose up --build -d
+[+] Building 4.2s (33/33) FINISHED
+ => [internal] load local bake definitions                                                                         0.0s
+ => => reading from stdin 3.85kB                                                                                   0.0s
+ => [api-gateway internal] load build definition from Dockerfile                                                   0.0s
+ => => transferring dockerfile: 388B                                                                               0.0s
+ => [product-service internal] load metadata for docker.io/library/maven:3.9.9-eclipse-temurin-21                  2.3s
+ => [product-service internal] load metadata for docker.io/library/eclipse-temurin:21-jre                          2.3s
+ => [auth] library/eclipse-temurin:pull token for registry-1.docker.io                                             0.0s
+ => [auth] library/maven:pull token for registry-1.docker.io                                                       0.0s
+ => [order-service internal] load .dockerignore                                                                    0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [api-gateway build 1/4] FROM docker.io/library/maven:3.9.9-eclipse-temurin-21@sha256:3a4ab3276a087bf276f79cae  0.0s
+ => => resolve docker.io/library/maven:3.9.9-eclipse-temurin-21@sha256:3a4ab3276a087bf276f79cae96b1af04f53731bec5  0.0s
+ => [notification-service internal] load build context                                                             0.2s
+ => => transferring context: 135.17kB                                                                              0.2s
+ => [inventory-service stage-1 1/3] FROM docker.io/library/eclipse-temurin:21-jre@sha256:ca73b4d3961703d6d7830a43  0.0s
+ => => resolve docker.io/library/eclipse-temurin:21-jre@sha256:ca73b4d3961703d6d7830a4361f49ef0478f8f28b39defc07b  0.0s
+ => CACHED [product-service stage-1 2/3] WORKDIR /app                                                              0.0s
+ => CACHED [product-service build 2/4] WORKDIR /workspace                                                          0.0s
+ => CACHED [product-service build 3/4] COPY . .                                                                    0.0s
+ => CACHED [notification-service build 4/4] RUN mvn -B -ntp -pl "notification-service" -am clean package -DskipTe  0.0s
+ => CACHED [notification-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                         0.0s
+ => CACHED [api-gateway build 4/4] RUN mvn -B -ntp -pl "api-gateway" -am clean package -DskipTests     && cp "api  0.0s
+ => CACHED [api-gateway stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                                  0.0s
+ => CACHED [inventory-service build 4/4] RUN mvn -B -ntp -pl "inventory-service" -am clean package -DskipTests     0.0s
+ => CACHED [inventory-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                            0.0s
+ => CACHED [order-service build 4/4] RUN mvn -B -ntp -pl "order-service" -am clean package -DskipTests     && cp   0.0s
+ => CACHED [order-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                                0.0s
+ => CACHED [product-service build 4/4] RUN mvn -B -ntp -pl "product-service" -am clean package -DskipTests     &&  0.0s
+ => CACHED [product-service stage-1 3/3] COPY --from=build /workspace/app.jar app.jar                              0.0s
+ => [api-gateway] exporting to image                                                                               0.2s
+ => => exporting layers                                                                                            0.0s
+ => => exporting manifest sha256:ee370c47f971f86ac93de1fd7cb3ae18891d52ac95bf3c3aaab84bf88c674823                  0.0s
+ => => exporting config sha256:2ce7ccb408533a87f8a36a1042e879c377e2a93c83f0a4635d3f35e9d9deeec2                    0.0s
+ => => exporting attestation manifest sha256:586086f48895b621a9719c08912c8111e017696bc1d056ab85af332d0f4defc5      0.1s
+ => => exporting manifest list sha256:cc3a9069ec09796b5f1e38cba15c1905a32dd0fc3bbd48bf54671ba728ec3803             0.0s
+ => => naming to docker.io/library/spring-boot-3-microservices-course-master-api-gateway:latest                    0.0s
+ => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-api-gateway:latest                 0.0s
+ => [order-service] exporting to image                                                                             0.2s
+ => => exporting layers                                                                                            0.0s
+ => => exporting manifest sha256:1264eace0183637edb17a2ca4b90bd27dae8f20ea02b07c2e52ac19e078e7f67                  0.0s
+ => => exporting config sha256:8d6e2976437a15d856018dbc4d817cde32463e76a56491fb7013e258e12f2f73                    0.0s
+ => => exporting attestation manifest sha256:82a9bb244aeb4ffa8ebf2ebc6478adf8ad6424d784ec728630691c0d0708bac0      0.1s
+ => => exporting manifest list sha256:76b55c685dfb10ddb9cae1b303d320917c4beb95983d60b0b44e28bb3328f3d5             0.0s
+ => => naming to docker.io/library/spring-boot-3-microservices-course-master-order-service:latest                  0.0s
+ => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-order-service:latest               0.0s
+ => [product-service] exporting to image                                                                           0.2s
+ => => exporting layers                                                                                            0.0s
+ => => exporting manifest sha256:0cae0ed273683bc0019344de7f99b29b967d5c7eea5b1b000f286bd8a5558990                  0.0s
+ => => exporting config sha256:b6f69c7257528174d2d379f5878d0161df907eae6a2377869b45c74b1f3cf383                    0.0s
+ => => exporting attestation manifest sha256:722ab2b994677de5b31f707ade8aa7d6ef370b0905bd5a9df99774d486a0b98c      0.1s
+ => => exporting manifest list sha256:2090f124cc6872e9616a864fc0a748e6bbfae478f15f233a04077108ae0a6a62             0.0s
+ => => naming to docker.io/library/spring-boot-3-microservices-course-master-product-service:latest                0.0s
+ => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-product-service:latest             0.0s
+ => [notification-service] exporting to image                                                                      0.2s
+ => => exporting layers                                                                                            0.0s
+ => => exporting manifest sha256:9385fbd474f9aad329279653e6da8e7a0d72095fd4cb70a2120f52396951f9b5                  0.0s
+ => => exporting config sha256:02f2c50b9de024599e4f4cb7559bcd3fc0c110aa6792ec5ceab8265a81465cf9                    0.0s
+ => => exporting attestation manifest sha256:e95e76f7e6e04c08a886212aa26528e37561ab8a017831457b4bb080b0c38e0f      0.1s
+ => => exporting manifest list sha256:e4bfda32e508ef335cd67f199159da55e5280a55ac56f4373d2bb41fdc64fa69             0.0s
+ => => naming to docker.io/library/spring-boot-3-microservices-course-master-notification-service:latest           0.0s
+ => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-notification-service:latest        0.0s
+ => [inventory-service] exporting to image                                                                         0.2s
+ => => exporting layers                                                                                            0.0s
+ => => exporting manifest sha256:12e398d08c616d80a2b7d02dc4b0cf7f8f5e975683295dd12cbe853983217cc5                  0.0s
+ => => exporting config sha256:d15138d6eb0ac774df8631a3f15229e3990f0303b86785e9afe86eb63a149c23                    0.0s
+ => => exporting attestation manifest sha256:b98b5571468f5c18db351cb64e188dc47d550a2e1f3ad3da3b254543d6a5e4fb      0.1s
+ => => exporting manifest list sha256:607af1ccd965517cc38929c9e3fea22dc0fa68e81c1cd110d8fa4edab5fed1f7             0.0s
+ => => naming to docker.io/library/spring-boot-3-microservices-course-master-inventory-service:latest              0.0s
+ => => unpacking to docker.io/library/spring-boot-3-microservices-course-master-inventory-service:latest           0.0s
+ => [api-gateway] resolving provenance for metadata file                                                           0.1s
+ => [product-service] resolving provenance for metadata file                                                       0.1s
+ => [notification-service] resolving provenance for metadata file                                                  0.1s
+ => [order-service] resolving provenance for metadata file                                                         0.0s
+ => [inventory-service] resolving provenance for metadata file                                                     0.0s
+[+] up 18/18
+ ✔ Image spring-boot-3-microservices-course-master-inventory-service          Built                                 4.5s ✔ Image spring-boot-3-microservices-course-master-order-service              Built                                 4.4s ✔ Image spring-boot-3-microservices-course-master-product-service            Built                                 4.5s ✔ Image spring-boot-3-microservices-course-master-notification-service       Built                                 4.5s ✔ Image spring-boot-3-microservices-course-master-api-gateway                Built                                 4.5s ✔ Container spring-boot-3-microservices-course-master-mysql-keycloak-1       Healthy                              10.9s ✔ Container spring-boot-3-microservices-course-master-mysql-1                Healthy                              11.1s ✔ Container spring-boot-3-microservices-course-master-mongodb-1              Healthy                              12.8s ✔ Container spring-boot-3-microservices-course-master-zookeeper-1            Started                               0.8s ✔ Container spring-boot-3-microservices-course-master-mailpit-1              Started                               1.0s ✔ Container spring-boot-3-microservices-course-master-broker-1               Healthy                              13.4s ✔ Container spring-boot-3-microservices-course-master-keycloak-1             Started                               0.2s ✔ Container spring-boot-3-microservices-course-master-inventory-service-1    Started                               0.2s ✔ Container spring-boot-3-microservices-course-master-product-service-1      Started                               0.3s ✔ Container spring-boot-3-microservices-course-master-schema-registry-1      Healthy                              31.8s ✔ Container spring-boot-3-microservices-course-master-order-service-1        Started                               0.7s ✔ Container spring-boot-3-microservices-course-master-notification-service-1 Started                               1.0s ✔ Container spring-boot-3-microservices-course-master-api-gateway-1          Started                               0.8sPS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master>
