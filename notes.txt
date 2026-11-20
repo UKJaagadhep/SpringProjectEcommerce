@@ -1,9 +1,1 @@
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker run --rm --network container:$(docker compose ps -q api-gateway) --entrypoint bash confluentinc/cp-schema-registry:7.5.0 -c 'curl -sS -i --max-time 10 "http://inventory-service:8082/api/inventory?skuCode=iphone_15&quantity=10"'
->>
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master>
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker run --rm --network container:$(docker compose ps -q api-gateway) --entrypoint bash confluentinc/cp-schema-registry:7.5.0 -c 'curl -sS -i --max-time 10 "http://inventory-service:8082/api/inventory?skuCode=iphone_15&quantity=10"'
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose logs --since 10m --tail 200 api-gateway
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose logs --since 10m --tail 200 inventory-service
-inventory-service-1  | 2026-11-20T04:22:45.192Z  INFO 1 --- [inventory-service] [nio-8082-exec-3] c.t.m.i.service.InventoryService         :  Start -- Received request to check stock for skuCode iphone_15, with quantity 10
-inventory-service-1  | 2026-11-20T04:22:48.285Z  INFO 1 --- [inventory-service] [nio-8082-exec-3] c.t.m.i.service.InventoryService         :  End -- Product with skuCode iphone_15, and quantity 10, is in stock - true
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master>
+docker run --rm --network "container:$(docker compose ps -q api-gateway)" --entrypoint curl confluentinc/cp-schema-registry:7.5.0 -sS -i --max-time 10 'http://inventory-service:8082/api/inventory?skuCode=iphone_15&quantity=10'
