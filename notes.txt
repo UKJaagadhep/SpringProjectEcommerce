@@ -1,16 +1,26 @@
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose ps -a
-NAME                                                               IMAGE                                                                     COMMAND                  SERVICE                CREATED         STATUS                   PORTS
-spring-boot-3-microservices-course-master-api-gateway-1            sha256:78dc9432f85585209d7d364fb4c228142844dfab94ae0df05dc4d7f870ea9e20   "java -jar /app/app.…"   api-gateway            5 hours ago     Up 5 minutes             0.0.0.0:9000->9000/tcp, [::]:9000->9000/tcp
-spring-boot-3-microservices-course-master-broker-1                 confluentinc/cp-kafka:7.5.0                                               "/etc/confluent/dock…"   broker                 5 hours ago     Up 6 minutes (healthy)   9092/tcp
-spring-boot-3-microservices-course-master-inventory-service-1      sha256:e3bd90e5d3eeeba90945459de47647a3bb6e57778a71b199c13328c6604ef201   "java -jar /app/app.…"   inventory-service      5 hours ago     Up 6 minutes             8082/tcp
-spring-boot-3-microservices-course-master-keycloak-1               quay.io/keycloak/keycloak:24.0.1                                          "/opt/keycloak/bin/k…"   keycloak               5 hours ago     Up 6 minutes             127.0.0.1:8181->8080/tcp
-spring-boot-3-microservices-course-master-mailpit-1                axllent/mailpit:latest                                                    "/mailpit"               mailpit                5 hours ago     Up 6 minutes (healthy)   127.0.0.1:8025->8025/tcp
-spring-boot-3-microservices-course-master-mongodb-1                mongo:7.0.5                                                               "docker-entrypoint.s…"   mongodb                6 minutes ago   Up 6 minutes (healthy)   27017/tcp
-spring-boot-3-microservices-course-master-mysql-1                  mysql:8.3.0                                                               "docker-entrypoint.s…"   mysql                  6 minutes ago   Up 6 minutes (healthy)   3306/tcp, 33060/tcp
-spring-boot-3-microservices-course-master-mysql-keycloak-1         mysql:8.3.0                                                               "docker-entrypoint.s…"   mysql-keycloak         6 minutes ago   Up 6 minutes (healthy)   3306/tcp, 33060/tcp
-spring-boot-3-microservices-course-master-notification-service-1   sha256:13b3254d1e9408d15b881a48a3e65f035a8ad971ad3ce913d95bbddf1d2cbcf6   "java -jar /app/app.…"   notification-service   5 hours ago     Up 5 minutes             8083/tcp
-spring-boot-3-microservices-course-master-order-service-1          sha256:bf37feccc0e52a83442bb9f43e5ea6f5e10c64099ed9945ededb0f450fbef769   "java -jar /app/app.…"   order-service          5 hours ago     Up 5 minutes             8081/tcp
-spring-boot-3-microservices-course-master-product-service-1        sha256:69a235d0e9ad8b5c75c74e475aa366a260b6580a528196e3df221b94145a9e18   "java -jar /app/app.…"   product-service        5 hours ago     Up 5 minutes             8080/tcp
-spring-boot-3-microservices-course-master-schema-registry-1        confluentinc/cp-schema-registry:7.5.0                                     "/etc/confluent/dock…"   schema-registry        5 hours ago     Up 5 minutes (healthy)   8081/tcp
-spring-boot-3-microservices-course-master-zookeeper-1              confluentinc/cp-zookeeper:7.5.0                                           "/etc/confluent/dock…"   zookeeper              5 hours ago     Up 6 minutes             2181/tcp, 2888/tcp, 3888/tcp
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose logs --tail 100 api-gateway
+api-gateway-1  |
+api-gateway-1  |   .   ____          _            __ _ _
+api-gateway-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+api-gateway-1  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+api-gateway-1  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+api-gateway-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
+api-gateway-1  |  =========|_|==============|___/=/_/_/_/
+api-gateway-1  |  :: Spring Boot ::                (v3.2.4)
+api-gateway-1  |
+api-gateway-1  | 2026-11-20T00:20:50.917Z  INFO 1 --- [api-gateway] [           main] c.t.m.gateway.ApiGatewayApplication      : Starting ApiGatewayApplication v0.0.1-SNAPSHOT using Java 21.0.13 with PID 1 (/app/app.jar started by root in /app)
+api-gateway-1  | 2026-11-20T00:20:50.922Z  INFO 1 --- [api-gateway] [           main] c.t.m.gateway.ApiGatewayApplication      : No active profile set, falling back to 1 default profile: "default"
+api-gateway-1  | 2026-11-20T00:20:54.215Z  INFO 1 --- [api-gateway] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=2c0e5360-971f-313e-808a-61940de263cc
+api-gateway-1  | 2026-11-20T00:20:54.681Z  INFO 1 --- [api-gateway] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
+api-gateway-1  | 2026-11-20T00:20:54.702Z  INFO 1 --- [api-gateway] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+api-gateway-1  | 2026-11-20T00:20:54.702Z  INFO 1 --- [api-gateway] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+api-gateway-1  | 2026-11-20T00:20:54.754Z  INFO 1 --- [api-gateway] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+api-gateway-1  | 2026-11-20T00:20:54.756Z  INFO 1 --- [api-gateway] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3688 ms
+api-gateway-1  | 2026-11-20T00:20:56.052Z  INFO 1 --- [api-gateway] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+api-gateway-1  | 2026-11-20T00:20:56.194Z  INFO 1 --- [api-gateway] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1f45db49, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3ac0a14b, org.springframework.security.web.context.SecurityContextHolderFilter@3df77dfa, org.springframework.security.web.header.HeaderWriterFilter@3dde5f38, org.springframework.web.filter.CorsFilter@e972ee1, org.springframework.security.web.csrf.CsrfFilter@63a84bb6, org.springframework.security.web.authentication.logout.LogoutFilter@77c23d90, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@6d7b2319, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@63187d63, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ccdc7aa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5e24592e, org.springframework.security.web.access.ExceptionTranslationFilter@45d7495e, org.springframework.security.web.access.intercept.AuthorizationFilter@62cd562d]
+api-gateway-1  | 2026-11-20T00:20:57.048Z  INFO 1 --- [api-gateway] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path ''
+api-gateway-1  | 2026-11-20T00:20:57.071Z  INFO 1 --- [api-gateway] [           main] c.t.m.gateway.ApiGatewayApplication      : Started ApiGatewayApplication in 7.053 seconds (process running for 8.752)
+api-gateway-1  | 2026-11-20T00:21:18.092Z  INFO 1 --- [api-gateway] [nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+api-gateway-1  | 2026-11-20T00:21:18.092Z  INFO 1 --- [api-gateway] [nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+api-gateway-1  | 2026-11-20T00:21:18.094Z  INFO 1 --- [api-gateway] [nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master>
