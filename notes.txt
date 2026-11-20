@@ -1,4 +1,19 @@
-$token = (Invoke-RestMethod -Method Post `
-  -Uri 'http://localhost:8181/realms/spring-microservices-security-realm/protocol/openid-connect/token' `
-  -Body @{ grant_type = 'client_credentials'; client_id = 'spring-cloud-client-id'; client_secret = $secret }).access_token
-curl.exe --noproxy '*' -sS -i --max-time 20 -H "Authorization: Bearer $token" 'http://127.0.0.1:9000/api/inventory?skuCode=iphone_15&quantity=10'
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> $token = (Invoke-RestMethod -Method Post `
+>>   -Uri 'http://localhost:8181/realms/spring-microservices-security-realm/protocol/openid-connect/token' `
+>>   -Body @{ grant_type = 'client_credentials'; client_id = 'spring-cloud-client-id'; client_secret = $secret }).access_token
+>> curl.exe --noproxy '*' -sS -i --max-time 20 -H "Authorization: Bearer $token" 'http://127.0.0.1:9000/api/inventory?skuCode=iphone_15&quantity=10'
+HTTP/1.1 200
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+date: Fri, 20 Nov 2026 04:48:38 GMT
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+true
