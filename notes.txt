@@ -1,26 +1,47 @@
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> docker compose logs --tail 100 api-gateway
-api-gateway-1  |
-api-gateway-1  |   .   ____          _            __ _ _
-api-gateway-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-api-gateway-1  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-api-gateway-1  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-api-gateway-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
-api-gateway-1  |  =========|_|==============|___/=/_/_/_/
-api-gateway-1  |  :: Spring Boot ::                (v3.2.4)
-api-gateway-1  |
-api-gateway-1  | 2026-11-20T00:20:50.917Z  INFO 1 --- [api-gateway] [           main] c.t.m.gateway.ApiGatewayApplication      : Starting ApiGatewayApplication v0.0.1-SNAPSHOT using Java 21.0.13 with PID 1 (/app/app.jar started by root in /app)
-api-gateway-1  | 2026-11-20T00:20:50.922Z  INFO 1 --- [api-gateway] [           main] c.t.m.gateway.ApiGatewayApplication      : No active profile set, falling back to 1 default profile: "default"
-api-gateway-1  | 2026-11-20T00:20:54.215Z  INFO 1 --- [api-gateway] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=2c0e5360-971f-313e-808a-61940de263cc
-api-gateway-1  | 2026-11-20T00:20:54.681Z  INFO 1 --- [api-gateway] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
-api-gateway-1  | 2026-11-20T00:20:54.702Z  INFO 1 --- [api-gateway] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-api-gateway-1  | 2026-11-20T00:20:54.702Z  INFO 1 --- [api-gateway] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-api-gateway-1  | 2026-11-20T00:20:54.754Z  INFO 1 --- [api-gateway] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-api-gateway-1  | 2026-11-20T00:20:54.756Z  INFO 1 --- [api-gateway] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3688 ms
-api-gateway-1  | 2026-11-20T00:20:56.052Z  INFO 1 --- [api-gateway] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-api-gateway-1  | 2026-11-20T00:20:56.194Z  INFO 1 --- [api-gateway] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1f45db49, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3ac0a14b, org.springframework.security.web.context.SecurityContextHolderFilter@3df77dfa, org.springframework.security.web.header.HeaderWriterFilter@3dde5f38, org.springframework.web.filter.CorsFilter@e972ee1, org.springframework.security.web.csrf.CsrfFilter@63a84bb6, org.springframework.security.web.authentication.logout.LogoutFilter@77c23d90, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@6d7b2319, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@63187d63, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ccdc7aa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5e24592e, org.springframework.security.web.access.ExceptionTranslationFilter@45d7495e, org.springframework.security.web.access.intercept.AuthorizationFilter@62cd562d]
-api-gateway-1  | 2026-11-20T00:20:57.048Z  INFO 1 --- [api-gateway] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path ''
-api-gateway-1  | 2026-11-20T00:20:57.071Z  INFO 1 --- [api-gateway] [           main] c.t.m.gateway.ApiGatewayApplication      : Started ApiGatewayApplication in 7.053 seconds (process running for 8.752)
-api-gateway-1  | 2026-11-20T00:21:18.092Z  INFO 1 --- [api-gateway] [nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-api-gateway-1  | 2026-11-20T00:21:18.092Z  INFO 1 --- [api-gateway] [nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-api-gateway-1  | 2026-11-20T00:21:18.094Z  INFO 1 --- [api-gateway] [nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master>
+PS C:\Users\Hp\Documents\spring-boot-3-microservices-course-master\spring-boot-3-microservices-course-master> curl.exe -v --max-time 15 http://localhost:9000/swagger-ui/swagger-initializer.js
+*   Trying 127.0.0.1:9000...
+* Connected to localhost (127.0.0.1) port 9000 (#0)
+> GET /swagger-ui/swagger-initializer.js HTTP/1.1
+> Host: localhost:9000
+> User-Agent: curl/8.0.1
+> Accept: */*
+>
+< HTTP/1.1 200
+< Vary: Origin
+< Vary: Access-Control-Request-Method
+< Vary: Access-Control-Request-Headers
+< Last-Modified: Thu, 19 Nov 2026 19:18:11 GMT
+< Cache-Control: no-store
+< Accept-Ranges: bytes
+< X-Content-Type-Options: nosniff
+< X-XSS-Protection: 0
+< X-Frame-Options: DENY
+< Content-Type: text/javascript
+< Content-Length: 609
+< Date: Fri, 20 Nov 2026 00:47:14 GMT
+<
+window.onload = function() {
+  //<editor-fold desc="Changeable Configuration Block">
+
+  // the following lines will be replaced by docker/configurator, when it runs in a docker-container
+  window.ui = SwaggerUIBundle({
+    url: "https://petstore.swagger.io/v2/swagger.json",
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ],
+    plugins: [
+      SwaggerUIBundle.plugins.DownloadUrl
+    ],
+    layout: "StandaloneLayout" ,
+
+  "configUrl" : "/api-docs/swagger-config",
+  "validatorUrl" : ""
+
+  });
+
+  //</editor-fold>
+};
+* Connection #0 to host localhost left intact
